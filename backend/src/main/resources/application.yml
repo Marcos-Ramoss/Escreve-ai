@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: docpronto-backend
+  
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/docpronto}
+      database: docpronto
+  
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: ${PORT:8081}
+  servlet:
+    context-path: /api
+
+mercadopago:
+  access-token: ${MERCADOPAGO_ACCESS_TOKEN:}
+  public-key: ${MERCADOPAGO_PUBLIC_KEY:}
+  webhook-secret: ${MERCADOPAGO_WEBHOOK_SECRET:}
+
+app:
+  pagamento:
+    valor-venda-unica: 29.90
+
+logging:
+  level:
+    root: INFO
+    com.docpronto: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html

@@ -1,0 +1,23 @@
+
+
+#Ignore cursor AI rules
+.cursor\rules\codacy.mdc
+
+# Maven
+backend/target/
+backend/.mvn/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.DS_Store
+/.cursor/
+/.idea/
+/docs/
+/backend/src/.idea/
