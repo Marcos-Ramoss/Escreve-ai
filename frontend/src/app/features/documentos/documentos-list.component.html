@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Documentos Disponíveis</h1>
+        <p class="text-gray-600">Escolha o tipo de documento que você precisa</p>
+    </div>
+
+    <p-progressSpinner *ngIf="loading" styleClass="w-12 h-12"></p-progressSpinner>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" *ngIf="!loading">
+        <p-card 
+            *ngFor="let documento of documentos" 
+            [header]="documento.nome"
+            [subheader]="documento.descricao"
+            styleClass="cursor-pointer hover:shadow-lg transition-shadow h-full">
+            <ng-template pTemplate="footer">
+                <p-button 
+                    label="Criar Documento" 
+                    icon="pi pi-arrow-right"
+                    [routerLink]="['/geracao', documento.id]"
+                    styleClass="p-button-primary w-full">
+                </p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

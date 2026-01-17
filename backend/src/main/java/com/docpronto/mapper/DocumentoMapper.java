@@ -12,6 +12,7 @@ public class DocumentoMapper {
                 entity.getId(),
                 entity.getNome(),
                 entity.getDescricao(),
+                entity.getTemplateHtml(),
                 entity.getCreatedAt()
         );
     }

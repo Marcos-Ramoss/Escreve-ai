@@ -1,0 +1,35 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-4 text-gray-800">
+            Precisa de um documento e não sabe como escrever?
+        </h1>
+        <p class="text-xl text-gray-600 mb-6">
+            Crie declarações, cartas e contratos prontos em poucos minutos, com português correto e sem complicação.
+        </p>
+        <p-button 
+            label="Criar meu documento agora" 
+            icon="pi pi-file-edit"
+            [routerLink]="['/documentos']"
+            size="large"
+            styleClass="p-button-primary">
+        </p-button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+        <p-card 
+            *ngFor="let documento of documentos" 
+            [header]="documento.nome"
+            [subheader]="documento.descricao"
+            styleClass="cursor-pointer hover:shadow-lg transition-shadow"
+            (click)="irParaGeracao(documento.id)">
+            <ng-template pTemplate="footer">
+                <p-button 
+                    label="Criar" 
+                    icon="pi pi-arrow-right"
+                    [routerLink]="['/geracao', documento.id]"
+                    styleClass="p-button-text p-button-primary w-full">
+                </p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

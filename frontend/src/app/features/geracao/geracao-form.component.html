@@ -1,0 +1,62 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <p-progressSpinner *ngIf="loading" styleClass="w-12 h-12"></p-progressSpinner>
+
+    <p-message *ngIf="erro" severity="error" [text]="erro" class="mb-4"></p-message>
+    
+    <p-card *ngIf="!loading && documento && !erro" [header]="documento.nome" [subheader]="documento.descricao">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+            <div class="flex flex-col gap-4">
+                <div *ngFor="let campo of campos" class="flex flex-col gap-2">
+                    <label [for]="campo.nome" class="font-semibold text-gray-700">
+                        {{ campo.label }}
+                        <span *ngIf="campo.obrigatorio" class="text-red-500">*</span>
+                    </label>
+
+                    <input
+                        *ngIf="campo.tipo === 'text' || campo.tipo === 'cpf' || campo.tipo === 'cep' || campo.tipo === 'phone' || campo.tipo === 'currency'"
+                        pInputText
+                        [id]="campo.nome"
+                        [formControlName]="campo.nome"
+                        [placeholder]="campo.placeholder || ''"
+                        (input)="aplicarMascara($event, campo)"
+                        class="w-full"
+                    />
+
+                    <textarea
+                        *ngIf="campo.tipo === 'textarea'"
+                        pTextarea
+                        [id]="campo.nome"
+                        [formControlName]="campo.nome"
+                        [placeholder]="campo.placeholder || ''"
+                        [rows]="4"
+                        class="w-full"
+                    ></textarea>
+
+                    <p-message 
+                        *ngIf="formulario.get(campo.nome)?.invalid && formulario.get(campo.nome)?.touched"
+                        severity="error"
+                        [text]="getMensagemErro(campo.nome)">
+                    </p-message>
+                </div>
+            </div>
+
+            <ng-template pTemplate="footer">
+                <div class="flex gap-2 justify-end">
+                    <p-button 
+                        label="Cancelar" 
+                        icon="pi pi-times"
+                        styleClass="p-button-secondary"
+                        (click)="cancelar()">
+                    </p-button>
+                    <p-button 
+                        type="submit"
+                        label="Visualizar Preview" 
+                        icon="pi pi-eye"
+                        [disabled]="formulario.invalid || salvando"
+                        [loading]="salvando">
+                    </p-button>
+                </div>
+            </ng-template>
+        </form>
+    </p-card>
+</div>

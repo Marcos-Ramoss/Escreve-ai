@@ -7,6 +7,7 @@ public record DocumentoDto(
         UUID id,
         String nome,
         String descricao,
+        String templateHtml,
         LocalDateTime createdAt
 ) {
 }

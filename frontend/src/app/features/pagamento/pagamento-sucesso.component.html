@@ -1,0 +1,31 @@
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+    <p-card>
+        <div class="text-center">
+            <i class="pi pi-check-circle text-6xl text-green-500 mb-4"></i>
+            <h2 class="text-2xl font-bold mb-4">Pagamento Confirmado!</h2>
+            <p class="text-gray-600 mb-6">Seu documento está pronto para download.</p>
+            
+            <p-message 
+                *ngIf="erro"
+                severity="error"
+                [text]="erro">
+            </p-message>
+
+            <div class="flex gap-2 justify-center">
+                <p-button 
+                    label="Baixar PDF" 
+                    icon="pi pi-download"
+                    styleClass="p-button-primary"
+                    [loading]="baixando"
+                    (click)="baixarPdf()">
+                </p-button>
+                <p-button 
+                    label="Voltar ao Início" 
+                    icon="pi pi-home"
+                    styleClass="p-button-secondary"
+                    (click)="voltar()">
+                </p-button>
+            </div>
+        </div>
+    </p-card>
+</div>
